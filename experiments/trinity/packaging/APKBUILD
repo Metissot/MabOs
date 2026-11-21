@@ -1,0 +1,28 @@
+# Bundle experimental de binarios compilados y probados en este laboratorio.
+pkgname=mabos-trinity-experimental
+pkgver=14.1.7
+pkgrel=1
+pkgdesc="Trinity R14.1.7 experimental para MabOs, sin KSplash"
+url="https://www.trinitydesktop.org/"
+arch="x86_64"
+license="GPL-2.0-or-later LGPL-2.1-or-later"
+depends="bash grep xrdb xset xsetroot iceauth xmessage xauth xkeyboard-config font-dejavu dbus"
+# Prefijos compilados y ayudantes SUID de upstream, solo para esta ISO de prueba.
+options="!check !fhs suid libtool"
+ldpath="/opt/trinity-experiment/lib:/opt/tqt-experiment/lib"
+source=""
+builddir="$srcdir"
+
+package() {
+    local root=/work/.work/trinity/rootfs
+    mkdir -p "$pkgdir/opt"
+    cp -a "$root/opt/tqt-experiment" "$root/opt/trinity-experiment" "$pkgdir/opt/"
+    install -Dm644 "$root/etc/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf" \
+        "$pkgdir/etc/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf"
+    install -Dm644 "$root/usr/share/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service" \
+        "$pkgdir/usr/share/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service"
+    # musl no tiene ldconfig; incluye las bibliotecas para activación por D-Bus.
+    mkdir -p "$pkgdir/etc"
+    printf '%s\n' '/lib:/usr/local/lib:/usr/lib:/opt/tqt-experiment/lib:/opt/trinity-experiment/lib' \
+        > "$pkgdir/etc/ld-musl-x86_64.path"
+}

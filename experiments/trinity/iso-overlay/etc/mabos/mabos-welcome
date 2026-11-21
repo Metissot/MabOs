@@ -1,0 +1,3 @@
+#!/bin/sh
+exec zenity --info --title="MabOs Trinity @MABOS_VERSION@" \
+    --width=540 --text="ISO experimental: Alpine + OpenRC + Trinity R14.1.7.\n\nKSplash desactivado por un fallo conocido.\nReinicio y apagado desde Trinity aún no validados.\nNo hay instalación automática ni persistencia.\n\nConserva alpha3 con MATE como alternativa."

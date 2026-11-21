@@ -1,0 +1,85 @@
+# Base y servicios
+alpine-base
+doas
+ca-certificates
+openssl
+tzdata
+kbd-bkeymaps
+eudev
+eudev-openrc
+udev-init-scripts
+dbus
+dbus-x11
+dbus-openrc
+elogind
+elogind-openrc
+polkit-elogind
+polkit-openrc
+# Escritorio y controladores libres
+xorg-server
+xf86-input-libinput
+xinit
+xauth
+mesa-dri-gallium
+mesa-va-gallium
+lightdm
+lightdm-openrc
+lightdm-gtk-greeter
+# Selección explícita: sin sensores, fondos pesados ni extensiones innecesarias.
+caja
+marco
+mate-control-center
+mate-desktop
+mate-icon-theme
+papirus-icon-theme
+mate-media
+mate-menus
+mate-notification-daemon
+mate-panel
+mate-polkit
+mate-power-manager
+mate-session-manager
+mate-settings-daemon
+mate-system-monitor
+mate-terminal
+mate-themes
+dconf
+mate-utils
+mate-calc
+pluma
+font-dejavu
+font-liberation
+musl-locales
+musl-locales-lang
+lang
+# Red: no activar dhcpcd ni networking junto a NetworkManager
+networkmanager
+networkmanager-openrc
+networkmanager-wifi
+wpa_supplicant
+wpa_supplicant-openrc
+networkmanager-cli
+network-manager-applet
+chrony
+# Audio de sesión
+pulseaudio
+pulseaudio-alsa
+pulseaudio-utils
+alsa-utils
+alsa-ucm-conf
+# Aplicaciones
+firefox-esr
+abiword
+evince
+engrampa
+celluloid
+gvfs
+gvfs-fuse
+gvfs-mtp
+udisks2
+# Diagnóstico
+pciutils
+usbutils
+util-linux
+curl
+zenity

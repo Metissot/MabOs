@@ -1,0 +1,5 @@
+
+MabOs @MABOS_VERSION@ — Oasis / Alpine Linux / OpenRC / MATE
+Medio live experimental. Los cambios no se conservan al reiniciar.
+Usuario local: live, sin contraseña. Administración: doas COMANDO.
+Sin SSH habilitado. Sin instalación automática.

@@ -1,0 +1,18 @@
+#!/bin/sh
+# Bienvenida bajo demanda: no añade trabajo al inicio de sesión.
+set -eu
+# Un diálogo simple no necesita aceleración 3D; también funciona en GPU antiguas.
+choice=$(GSK_RENDERER=cairo zenity --list --title="Bienvenido a MabOs" \
+    --text="MabOs @MABOS_VERSION@ · Oasis\nUn escritorio tranquilo, ligero y cercano.\nSesión live: los cambios se pierden al reiniciar." \
+    --width=620 --height=390 --column="Acción" --column="Descripción" \
+    "Red" "Configurar Ethernet y Wi-Fi" \
+    "Teclado" "Elegir la distribución de teclado" \
+    "Apariencia" "Cambiar fondo, temas y tipografía" \
+    "Guía" "Leer las indicaciones de esta sesión live" \
+    --ok-label="Abrir" --cancel-label="Cerrar") || exit 0
+case "$choice" in
+    Red) exec nm-connection-editor ;;
+    Teclado) exec mate-keyboard-properties ;;
+    Apariencia) exec mate-appearance-properties ;;
+    Guía) exec pluma "$HOME/Desktop/LEEME.txt" ;;
+esac

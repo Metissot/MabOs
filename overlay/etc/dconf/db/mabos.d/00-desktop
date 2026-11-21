@@ -1,0 +1,37 @@
+[org/mate/terminal/profiles/default]
+use-theme-colors=false
+foreground-color='#D3D7CF'
+background-color='#2E3436'
+
+[org/mate/applications-browser]
+exec='firefox-esr'
+needs-term=false
+
+[org/mate/desktop/background]
+picture-filename='/etc/mabos/artwork/oasis.svg'
+picture-options='zoom'
+primary-color='#e6e9dc'
+secondary-color='#d5e5df'
+color-shading-type='solid'
+
+[org/mate/desktop/interface]
+gtk-theme='YaruOk'
+icon-theme='Papirus-Light'
+font-name='DejaVu Sans 10'
+document-font-name='DejaVu Sans 10'
+monospace-font-name='DejaVu Sans Mono 10'
+
+[org/mate/marco/general]
+theme='YaruOk'
+titlebar-font='DejaVu Sans Bold 10'
+
+[org/mate/panel/menubar]
+show-icon=true
+icon-name='mabos-logo'
+icon-size='24px'
+
+[org/mate/panel/toplevels/top]
+size=28
+
+[org/mate/panel/general]
+default-layout='mabos'

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=MabOs Trinity experimental
+Comment=Trinity R14.1.7 sin KSplash
+Exec=/etc/mabos/start-trinity
+Type=Application
+DesktopNames=TDE

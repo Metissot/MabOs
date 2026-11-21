@@ -1,0 +1,6 @@
+NAME="MabOs"
+ID=mabos
+ID_LIKE=alpine
+PRETTY_NAME="MabOs @MABOS_VERSION@ Oasis (experimental)"
+VERSION_ID=0.1.0
+VERSION="@MABOS_VERSION@"

@@ -1,0 +1,57 @@
+#!/sbin/openrc-run
+description="Preparación de la sesión temporal de MabOs"
+
+depend() {
+    need localmount dbus
+    after elogind
+    before lightdm display-manager
+}
+
+start() {
+    ebegin "Preparando usuario live de MabOs"
+    install -Dm644 /etc/mabos/artwork/dandelion.svg \
+        /usr/share/icons/hicolor/scalable/places/mabos-logo.svg || return 1
+    install -Dm644 /etc/mabos/mabos.layout \
+        /usr/share/mate-panel/layouts/mabos.layout || return 1
+    install -Dm755 /etc/mabos/mabos-welcome /usr/local/bin/mabos-welcome || return 1
+    install -Dm644 /etc/mabos/mabos-welcome.desktop \
+        /usr/share/applications/mabos-welcome.desktop || return 1
+    gtk-update-icon-cache -f /usr/share/icons/hicolor >/dev/null 2>&1 || return 1
+    if ! id live >/dev/null 2>&1; then
+        adduser -D -s /bin/ash -g "Usuario live de MabOs" live || return 1
+        for group in audio video input netdev plugdev wheel; do
+            grep -q "^$group:" /etc/group || addgroup -S "$group"
+            addgroup live "$group" || return 1
+        done
+        # Cuenta local sin contraseña, solo para el medio live.
+        passwd -d live >/dev/null
+    fi
+    passwd -l root >/dev/null
+    mkdir -p /home/live/Desktop
+    if [ ! -f /home/live/Desktop/LEEME.txt ]; then
+        cat > /home/live/Desktop/LEEME.txt <<'EOF'
+Bienvenido a MabOs @MABOS_VERSION@ — Oasis
+
+Alpine Linux + OpenRC + MATE, sesión live experimental.
+Usuario: live (sin contraseña). SSH no está habilitado.
+Administración local: doas COMANDO (sin contraseña en esta ISO de prueba).
+Los cambios, archivos y actualizaciones se pierden al reiniciar.
+No hay instalación automática ni instalador propio.
+
+Conecta la red desde el icono del panel. Ajusta sonido y pantalla
+desde el centro de control de MATE.
+Abre "Bienvenido a MabOs" desde Aplicaciones para acceder a la configuración.
+Fondo Oasis conservado. Logo: diente de león de MabOs, inspirado en Catamarca.
+Tema: YaruOk. Iconos: Papirus-Light. Procesador de textos: AbiWord.
+La lista de ventanas está en el panel superior; no hay panel inferior.
+
+Para probar hardware: red, audio, pantalla, USB, apagado y reinicio.
+Secure Boot no está soportado en esta versión.
+No montes ni modifiques tus discos internos si no es necesario.
+Guarda tus archivos en un medio externo antes de apagar.
+EOF
+    fi
+    chown -R live:live /home/live
+    dconf update || return 1
+    eend 0
+}

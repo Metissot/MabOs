@@ -1,0 +1,9 @@
+#!/bin/sh
+export TDEDIR=/opt/trinity-experiment TQTDIR=/opt/tqt-experiment
+export PATH="$TDEDIR/bin:$TQTDIR/bin:$PATH"
+export LD_LIBRARY_PATH="$TDEDIR/lib:$TQTDIR/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export TDEHOME="$HOME/.trinity"
+pulseaudio --start --exit-idle-time=-1
+/usr/libexec/polkit-mate-authentication-agent-1 >/tmp/mabos-polkit.log 2>&1 &
+nm-applet >/tmp/mabos-nm-applet.log 2>&1 &
+exec "$TDEDIR/bin/starttde"

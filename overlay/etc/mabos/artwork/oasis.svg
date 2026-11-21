@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 1920 1080">
+  <title>Oasis — MabOs</title>
+  <desc>Un amanecer tranquilo entre dunas de arena y lomas verdes, con un cactus a la derecha.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop stop-color="#d5e5df"/>
+      <stop offset=".62" stop-color="#f1eadb"/>
+      <stop offset="1" stop-color="#f5e5c9"/>
+    </linearGradient>
+    <linearGradient id="dune" x2="0" y2="1">
+      <stop stop-color="#ddcfb1"/>
+      <stop offset="1" stop-color="#c8b99d"/>
+    </linearGradient>
+    <linearGradient id="sage" x2="0" y2="1">
+      <stop stop-color="#9eb4a1"/>
+      <stop offset="1" stop-color="#789880"/>
+    </linearGradient>
+    <linearGradient id="foreground" x2="0" y2="1">
+      <stop stop-color="#5c816f"/>
+      <stop offset="1" stop-color="#355e50"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#fff5d9" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#fff5d9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1920v1080H0z"/>
+  <circle cx="1320" cy="350" r="280" fill="url(#glow)"/>
+  <circle cx="1320" cy="350" r="70" fill="#fff3d5" opacity=".9"/>
+  <path d="M0 650c240-85 390-70 610-10s390 75 640-15 470-80 670-10v465H0z" fill="#ced3bb"/>
+  <path d="M0 745c260-35 350-180 635-155s380 195 660 140 420-120 625-80v430H0z" fill="url(#dune)"/>
+  <path d="M0 790c270 90 475 100 760-5s430-115 665-25 335 90 495 40v280H0z" fill="url(#sage)"/>
+  <path d="M0 960c280-70 540 65 830-5s450-140 720-85 290 40 370 15v195H0z" fill="url(#foreground)"/>
+  <g fill="#3c6856">
+    <path d="M1538 880V704a18 18 0 0 1 36 0v176z"/>
+    <path d="M1555 788h-29a36 36 0 0 1-36-36v-36a13 13 0 0 1 26 0v36a10 10 0 0 0 10 10h29z"/>
+    <path d="M1560 746h29a10 10 0 0 0 10-10v-41a13 13 0 0 1 26 0v41a36 36 0 0 1-36 36h-29z"/>
+  </g>
+  <path d="M1550 713v142m15-142v142m-64-130v22m111-40v23" stroke="#79a089" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+  <path d="M1465 895c65-20 120-14 170 5" fill="none" stroke="#a4b69a" stroke-width="3" stroke-linecap="round" opacity=".35"/>
+</svg>

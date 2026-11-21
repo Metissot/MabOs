@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Bienvenido a MabOs
+Comment=Red, teclado, apariencia y guía de la sesión live
+Exec=mabos-welcome
+Icon=mabos-logo
+Terminal=false
+Categories=Settings;System;
+StartupNotify=false

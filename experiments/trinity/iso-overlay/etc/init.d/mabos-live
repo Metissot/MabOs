@@ -1,0 +1,42 @@
+#!/sbin/openrc-run
+description="Sesión live experimental MabOs Trinity"
+
+depend() {
+    need localmount dbus
+    after elogind
+    before lightdm display-manager
+}
+
+start() {
+    ebegin "Preparando MabOs Trinity experimental"
+    install -Dm644 /etc/mabos/artwork/dandelion.svg \
+        /usr/share/icons/hicolor/scalable/places/mabos-logo.svg || return 1
+    install -Dm644 /etc/mabos/mabos-trinity.desktop \
+        /usr/share/xsessions/mabos-trinity.desktop || return 1
+    gtk-update-icon-cache -f /usr/share/icons/hicolor >/dev/null 2>&1 || return 1
+    install -Dm755 /etc/mabos/mabos-welcome /usr/local/bin/mabos-welcome || return 1
+    install -Dm644 /etc/mabos/mabos-welcome.desktop \
+        /usr/share/applications/mabos-welcome.desktop || return 1
+    if ! id live >/dev/null 2>&1; then
+        adduser -D -s /bin/ash -g "Usuario live de MabOs" live || return 1
+        for group in audio video input netdev plugdev wheel; do
+            grep -q "^$group:" /etc/group || addgroup -S "$group"
+            addgroup live "$group" || return 1
+        done
+        passwd -d live >/dev/null
+    fi
+    passwd -l root >/dev/null
+    mkdir -p /home/live/Desktop
+    cat > /home/live/Desktop/LEEME.txt <<'EOF'
+MabOs @MABOS_VERSION@ — Trinity experimental
+
+Alpine + OpenRC + Trinity R14.1.7, sin KSplash.
+Usuario live sin contraseña. No hay instalación automática ni persistencia.
+Reinicio/apagado desde Trinity y hardware real aún no validados.
+No montes ni modifiques tus discos internos para esta prueba.
+Guarda tus archivos en un medio externo antes de apagar.
+Secure Boot no está soportado.
+EOF
+    chown -R live:live /home/live
+    eend 0
+}

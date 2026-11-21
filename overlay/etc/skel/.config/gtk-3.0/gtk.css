@@ -1,0 +1,5 @@
+/* Etiquetas legibles sobre el fondo claro Oasis; no modifica otras vistas. */
+.caja-desktop .view {
+    color: #203c31;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
